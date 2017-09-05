@@ -36,7 +36,7 @@ public class CalcularVueltas {
 		
 		vueltasCompra = (billetesPago * 4) - valorCompra;
 		System.out.println(vueltasCompra+" euros de vuelta");
-		 {
+		 
 			
 			for (int i = 0; i < DINERO.length; i++) {
 				while ((vueltasCompra > DINERO[i])&&(vueltasCompra > 0)){
@@ -46,7 +46,6 @@ public class CalcularVueltas {
 
 			}//end for
 
-		}//end while
 		for (int j = 0; j < dineroDevuelto.length; j++) {
 			
 			System.out.println("Moneda o billete de " +DINERO[j]+"€" + " devuelve un total de " + dineroDevuelto[j]);
