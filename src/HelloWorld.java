@@ -9,7 +9,21 @@ public class HelloWorld {
 		System.out.println("Hello World");
 		
 		
-		String [] alumnos ={"Arkaitz", "Erlantz", "Fran", "Cristian", "Leire", "Mikel", "Josu","Alberto","Jon", "Lander","German"};
+		String [] alumnos ={
+					"Ander",
+					"Arkaitz", 
+					"Erlantz", 
+					"Fran", 
+					"Cristian", 
+					"Leire", 
+					"Mikel", 
+					"Josu",
+					"Alberto",
+					"Jon", 
+					"Naiara",
+					"Lander",
+					"German"
+					};
 		
 		
 		System.out.println("---------------Listado de alumnos----------------");
