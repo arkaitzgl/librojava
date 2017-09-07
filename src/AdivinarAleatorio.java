@@ -12,14 +12,12 @@ public class AdivinarAleatorio {
 		boolean numCorrecto = false;
 		String opcion = "s";
 
-		
-
 		System.out.println("------------Adivina el numero------------");
 
 		do {
-			intento=3;
+			intento = 3;
 			numAleatorio = (int) (Math.random() * 10);
-			
+
 			do {
 
 				System.out.println("Introduce el numero a adivinar (tienes " + intento + " intentos):");
@@ -51,8 +49,8 @@ public class AdivinarAleatorio {
 			} while ((intento != 0) && (num != numAleatorio));
 			System.out.println("Desea volver a jugar?");
 			opcion = sc.next();
-		} while (("s").equals(opcion));
-		
+		} while (("s").equalsIgnoreCase(opcion));
+
 		System.out.println("Gracias por participar!!!!");
 		sc.close();
 	}
