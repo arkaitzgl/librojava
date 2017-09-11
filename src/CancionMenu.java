@@ -79,7 +79,7 @@ public class CancionMenu {
 		sc = new Scanner(System.in);
 		System.out.println("Introduce la posicion de la cancion que deseas eliminar:");
 		int cancPosEliminar = sc.nextInt();
-		listaCanciones.remove((cancPosEliminar - 1));
+		listaCanciones.remove((cancPosEliminar-1));
 
 	}
 
