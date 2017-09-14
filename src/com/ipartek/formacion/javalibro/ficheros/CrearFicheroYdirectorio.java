@@ -23,7 +23,7 @@ public class CrearFicheroYdirectorio {
 	public static void main(String[] args) {
 		FileWriter fw = null;
 		BufferedWriter bw = null;
-		
+
 		Scanner sc = new Scanner(System.in);
 		String directorio;
 		String fichero;
@@ -31,25 +31,23 @@ public class CrearFicheroYdirectorio {
 
 		try {
 			System.out.println("Introduce nombre del directorio: ");
-			directorio=sc.nextLine();
-			
-			File carpeta=new File("c:\\"+directorio); 
-			carpeta.mkdir(); 
-			
+			directorio = sc.nextLine();
+
+			File carpeta = new File("c:\\" + directorio);
+			carpeta.mkdir();
+			System.out.println("Directorio creado con exito");
+
 			System.out.println("Introduce nombre del fichero: ");
-			fichero=sc.nextLine();
-			
-			
-			
-			fw = new FileWriter(carpeta+"\\"+fichero+".txt");
+			fichero = sc.nextLine();
+
+			fw = new FileWriter(carpeta + "\\" + fichero + ".txt");
 			bw = new BufferedWriter(fw);
-			
+
 			System.out.println("Introduce texto: ");
-			contenido=sc.nextLine();
+			contenido = sc.nextLine();
 			bw.write(contenido);
 
 			System.out.println("Fichero creado con exito");
-			
 
 		} catch (IOException e) {
 			System.out.println("No se puede escribir en el fichero");
