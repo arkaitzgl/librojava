@@ -28,24 +28,40 @@ public class CrearFicheroYdirectorio {
 		String directorio;
 		String fichero;
 		String contenido;
+		String opcion = "n";
 
 		try {
 			System.out.println("Introduce nombre del directorio: ");
 			directorio = sc.nextLine();
 
 			File carpeta = new File("c:\\" + directorio);
-			carpeta.mkdir();
-			System.out.println("Directorio creado con exito");
+			if (carpeta.exists()) {
+				System.out.println("La carpeta ya existe");
+			} else {
+				carpeta.mkdir();
+				System.out.println("Directorio creado con exito");
+			}
 
 			System.out.println("Introduce nombre del fichero: ");
 			fichero = sc.nextLine();
+			
+			File file = new File (carpeta + "\\" + fichero + ".txt");
+			if (!file.exists()) {
+	            file.createNewFile();
+				System.out.println("Fichero creado con exito");
 
-			fw = new FileWriter(carpeta + "\\" + fichero + ".txt");
+	        }
+
+			fw = new FileWriter(file.getAbsoluteFile(),true );
 			bw = new BufferedWriter(fw);
 
-			System.out.println("Introduce texto: ");
-			contenido = sc.nextLine();
-			bw.write(contenido);
+			do {
+				System.out.println("Introduce texto: ");
+				contenido = sc.nextLine();
+				bw.write(contenido+ "\r\n");
+				System.out.println("Desea introducir mas datos (pulsa n, para salir)");
+				opcion = sc.nextLine();
+			} while (!("n").equalsIgnoreCase(opcion));
 
 			System.out.println("Fichero creado con exito");
 
