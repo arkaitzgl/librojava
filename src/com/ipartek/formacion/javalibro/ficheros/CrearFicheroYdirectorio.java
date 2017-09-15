@@ -24,44 +24,52 @@ public class CrearFicheroYdirectorio {
 		FileWriter fw = null;
 		BufferedWriter bw = null;
 
-		Scanner sc = new Scanner(System.in);
+		Scanner sc = null;
 		String directorio;
 		String fichero;
 		String contenido;
 		String opcion = "n";
 
 		try {
+
+			sc = new Scanner(System.in);
 			System.out.println("Introduce nombre del directorio: ");
 			directorio = sc.nextLine();
 
+			//Directorio  
 			File carpeta = new File("c:\\" + directorio);
 			if (carpeta.exists()) {
 				System.out.println("La carpeta ya existe");
 			} else {
-				carpeta.mkdir();
-				System.out.println("Directorio creado con exito");
+				if (carpeta.mkdir()) {
+					System.out.println("Directorio creado con exito");
+				} else
+					System.out.println("Error directorio NO creado");
 			}
 
-			System.out.println("Introduce nombre del fichero: ");
+			//fichero
+			System.out.println("Introduce nombre del fichero(sin extension.txt): ");
 			fichero = sc.nextLine();
-			
-			File file = new File (carpeta + "\\" + fichero + ".txt");
+
+			File file = new File(carpeta + "\\" + fichero + ".txt");
 			if (!file.exists()) {
-	            file.createNewFile();
+				file.createNewFile();
 				System.out.println("Fichero creado con exito");
-
-	        }
-
-			fw = new FileWriter(file.getAbsoluteFile(),true );
+				}else {
+					System.out.println("Ya existia un fichero");
+				}
+			// escritura dentro del fichero
+			// usamos "getAbsoluteFile(), true" para no machacar contenido fichero
+			fw = new FileWriter(file.getAbsoluteFile(), true);
 			bw = new BufferedWriter(fw);
 
 			do {
 				System.out.println("Introduce texto: ");
 				contenido = sc.nextLine();
-				bw.write(contenido+ "\r\n");
+				bw.write(contenido + "\r\n");    //\r retorno de carro y \n salto de linea
 				System.out.println("Desea introducir mas datos (pulsa n, para salir)");
 				opcion = sc.nextLine();
-			} while (!("n").equalsIgnoreCase(opcion));
+			} while (!"n".equalsIgnoreCase(opcion));
 
 			System.out.println("Fichero creado con exito");
 
