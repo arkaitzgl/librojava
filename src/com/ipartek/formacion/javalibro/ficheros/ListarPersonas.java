@@ -14,11 +14,15 @@ import java.io.IOException;
 public class ListarPersonas {
 
 	public static void main(String[] args) {
-	
+		 int cont =0;
+		 FileReader fr=null;
+		 BufferedReader br= null;
+		
+		
 		try { 
-			FileReader fr = new FileReader("C:\\desarrollo\\data\\personas.txt");
-		    BufferedReader br = new BufferedReader(fr);
-		    int cont =0;
+			 fr = new FileReader("C:\\Desarrollo\\workspace\\JavaLibro\\data\\personas.txt");
+			 br = new BufferedReader(fr);
+		   
 			String linea=null; 
 			while ((linea=br.readLine()) != null) { 
 				System.out.println(linea); 
