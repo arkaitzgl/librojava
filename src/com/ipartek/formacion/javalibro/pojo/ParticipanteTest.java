@@ -4,6 +4,19 @@ import com.ipartek.formacion.javalibro.excepciones.ParticipanteException;
 import junit.framework.TestCase;
 
 public class ParticipanteTest extends TestCase {
+	
+	public void testEquals () {
+		Participante p1= new Participante();
+		Participante p2= new Participante();
+		
+		p1.setNombre("Manolo");
+		p2.setNombre("Manolo");
+		
+		assertEquals("no son iguales", p1, p2);
+	}
+	
+	
+	
 
 	public void testConstructorVacio() {
 
