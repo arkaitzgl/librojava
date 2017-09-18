@@ -18,7 +18,7 @@ public class Libro implements Imprimible, Vendible{
 		this.autor="Anonimo";
 		this.paginas=0;
 	}
-	
+	 
 	
 	public String getTitulo() {
 		return titulo;
@@ -44,6 +44,15 @@ public class Libro implements Imprimible, Vendible{
 		this.paginas = ( paginas > 0 ) ? paginas : 0;
 	}
 
+	/**
+	 * Se puede acceder desde la propia clase.
+	 * Desde el mismo "package" o desde otro 
+	 * Desde cualquier "subclase" o Clase "Hija", 
+	 * pero no se puede ver desde una clase de otro "package".
+	 */
+	protected void metodoProtegido() {
+		System.out.println("Soy un metodo protegido");
+	}
 
 	@Override
 	public String toString() {

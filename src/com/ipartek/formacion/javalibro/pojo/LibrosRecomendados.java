@@ -9,12 +9,16 @@ public class LibrosRecomendados {
 		l.setAutor("Gabriel García");
 		l.setPaginas(307);
 		
+		l.metodoProtegido();
+		
 		System.out.println(l.getPrecio());
 		
 		LibroElectronico le= new LibroElectronico("Años salvajes");
 		le.setAutor("William Finnegan");
 		le.setTamanyo(23);
 		le.setPaginas(523);
+		
+		le.metodoProtegido();
 		
 		System.out.println(le.getPrecio());
 		
