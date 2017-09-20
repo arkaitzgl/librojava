@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.ipartek.formacion.javalibro.excepciones.PersonaException;
+import com.ipartek.formacion.javalibro.pojo.Persona;
+
 /**
  * Cargamos en memoria los datos de las personas del fichero personas.txt<br>
  * La carga en memoria lo vamos a realizar con dos colecciones para ver cual es mas optima
@@ -19,7 +22,7 @@ public class CargarPersonas {
 	static ArrayList<Persona> p = new ArrayList<>();
 	static HashMap<String, Persona> map = new HashMap<String, Persona>();
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws PersonaException {
 
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -38,7 +41,7 @@ public class CargarPersonas {
 					String nombre = partes[0];
 					String apellido1 = partes[1];
 					String apellido2 = partes[2];
-					String num = partes[3];
+					int num = Integer.parseInt(partes[3]) ;
 					String mail = partes[4];
 					String dni = partes[5];
 					String funcion = partes[6];
