@@ -52,12 +52,15 @@ public class DivisionFicheros {
 					if (partes.length == NUM_CAMPOS_LINEA) {
 						p = mapeoLinea(partes);
 						bw.write(linea + "\r\n");
+						bw.flush();
 					} else {
 						bw2.write(linea + "\r\n");
+						bw2.flush();
 					}
 
 				} catch (Exception e) {
 					bw2.write(linea + "\r\n");
+					bw2.flush();
 				}
 
 			}
