@@ -11,7 +11,7 @@ import com.ipartek.formacion.javalibro.excepciones.PersonaException;
 import com.ipartek.formacion.javalibro.pojo.Persona;
 
 public class DivisionFicheros {
-	
+
 	static final String PATH_FICHERO_PERSONAS = "data\\personas.txt";
 	static final String PATH_FICHERO_PERSONAS_OK = "data\\personasOK.txt";
 	static final String PATH_FICHERO_PERSONAS_ERROR = "data\\personasError.txt";
@@ -64,12 +64,22 @@ public class DivisionFicheros {
 				}
 
 			}
-			bw.close();
-			bw2.close();
-			fw.close();
-			fw2.close();
+
 		} catch (IOException errorDeFichero) {
 			System.out.println("Ha habido problemas: " + errorDeFichero.getMessage());
+		} finally {
+			try {
+				bw.close();
+				bw2.close();
+				fw.close();
+				fw2.close();
+				br.close();
+				fr.close();
+			} catch (IOException e) {
+				System.out.println("No se puede cerrar el Buffer ,writer, reader");
+				e.printStackTrace();
+			}
+
 		}
 
 	}
