@@ -7,10 +7,12 @@ public class Cancion {
 	private String titulo;
 	private String artista;
 	private String duracion;
+	private long id;
 
 	//Constructores
 	public Cancion(String titulo, String artista, String duracion) {
 		super();
+		this.id=-1;
 		this.titulo = titulo;
 		this.artista = artista;
 		this.duracion = duracion;
@@ -45,9 +47,21 @@ public class Cancion {
 	}
 
 
+	public long getId() {
+		return id;
+	}
 
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+
+	@Override
 	public String toString() {
-		return "Cancion [titulo=" + this.titulo + ", artista=" + this.artista + ", duracion=" + this.duracion + "]";
+		return "Cancion [titulo=" + titulo + ", artista=" + artista + ", duracion=" + duracion + ", id=" + id + "]";
 	}
 	
 	
