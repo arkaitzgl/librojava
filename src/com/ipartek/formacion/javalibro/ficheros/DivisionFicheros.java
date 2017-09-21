@@ -58,7 +58,7 @@ public class DivisionFicheros {
 						bw2.flush();
 					}
 
-				} catch (Exception e) {
+				} catch (PersonaException e) {
 					bw2.write(linea + "\r\n");
 					bw2.flush();
 				}
