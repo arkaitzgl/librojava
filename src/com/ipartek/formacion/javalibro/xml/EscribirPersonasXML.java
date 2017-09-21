@@ -48,8 +48,8 @@ import java.util.ArrayList;
 
 public class EscribirPersonasXML {
 
-	static final String PATH_FICHERO_PERSONAS = "data\\personas.txt";
-
+	static final String PATH_FICHERO_PERSONAS = "data\\person.txt";
+	static final int NUM_CAMPOS_LINEA = 7;
 	static final int CAMPOS_NOMBRE = 0;
 	static final int CAMPOS_APE1 = 1;
 	static final int CAMPOS_APE2 = 2;
@@ -61,7 +61,7 @@ public class EscribirPersonasXML {
 	public static void main(String[] args) {
 
 		ArrayList<Persona> lista = new ArrayList<Persona>();
-	
+		ArrayList<Persona> lista2 = new ArrayList<Persona>();
 
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -72,38 +72,37 @@ public class EscribirPersonasXML {
 			Element rootElement = doc.createElement("personas");
 			doc.appendChild(rootElement);
 
-			rellenarArrayList();
-			
-			
-			for (int i = 0; i < lista.size(); i++) {
-				
+			lista2= rellenarArrayList();
+			System.out.println(lista2.size());
 
-			// añadir elementos personas al nodo raiz
-				
-			Element ePersona = doc.createElement("persona");
-			Element eNombre = doc.createElement("nombre");
-			eNombre.setTextContent(lista.get(i).getNombre());
-			Element eApellido1 = doc.createElement("apellido1");
-			eNombre.setTextContent(lista.get(i).getApellido1());
-			Element eApellido2 = doc.createElement("apellido2");
-			eNombre.setTextContent(lista.get(i).getApellido2());
-			Element eEdad = doc.createElement("edad");
-			eNombre.setTextContent(String.valueOf(lista.get(i).getNum()));
-			Element eEmail = doc.createElement("email");
-			eNombre.setTextContent(lista.get(i).getMail());
-			Element eDni = doc.createElement("dni");
-			eNombre.setTextContent(lista.get(i).getDni());
-			Element eRol = doc.createElement("rol");
-			eNombre.setTextContent(lista.get(i).getFuncion());
-			ePersona.appendChild(eNombre);
-			ePersona.appendChild(eApellido1);
-			ePersona.appendChild(eApellido2);
-			ePersona.appendChild(eEdad);
-			ePersona.appendChild(eEmail);
-			ePersona.appendChild(eDni);
-			ePersona.appendChild(eRol);
-			rootElement.appendChild(ePersona);
-			
+			for (int i = 0; i < lista2.size(); i++) {
+
+				// añadir elementos personas al nodo raiz
+
+				Element ePersona = doc.createElement("persona");
+				Element eNombre = doc.createElement("nombre");
+				eNombre.setTextContent(lista2.get(i).getNombre());
+				Element eApellido1 = doc.createElement("apellido1");
+				eApellido1.setTextContent(lista2.get(i).getApellido1());
+				Element eApellido2 = doc.createElement("apellido2");
+				eApellido2.setTextContent(lista2.get(i).getApellido2());
+				Element eEdad = doc.createElement("edad");
+				eEdad.setTextContent(String.valueOf(lista2.get(i).getNum()));
+				Element eEmail = doc.createElement("email");
+				eEmail.setTextContent(lista2.get(i).getMail());
+				Element eDni = doc.createElement("dni");
+				eDni.setTextContent(lista2.get(i).getDni());
+				Element eRol = doc.createElement("rol");
+				eRol.setTextContent(lista2.get(i).getFuncion());
+				ePersona.appendChild(eNombre);
+				ePersona.appendChild(eApellido1);
+				ePersona.appendChild(eApellido2);
+				ePersona.appendChild(eEdad);
+				ePersona.appendChild(eEmail);
+				ePersona.appendChild(eDni);
+				ePersona.appendChild(eRol);
+				rootElement.appendChild(ePersona);
+
 			}
 
 			// Guardar en fichero
@@ -119,7 +118,7 @@ public class EscribirPersonasXML {
 
 	}
 
-	private static void rellenarArrayList() {
+	private static  ArrayList<Persona> rellenarArrayList() {
 		ArrayList<Persona> lista = new ArrayList<Persona>();
 		FileReader fr = null;
 		BufferedReader br = null;
@@ -134,13 +133,13 @@ public class EscribirPersonasXML {
 			while ((linea = br.readLine()) != null) {
 
 				partes = linea.split(",");
-
-				try {
-					p = mapeoLinea(partes);
-					
-					lista.add(p);
-				} catch (Exception e) {
-
+				if (partes.length == NUM_CAMPOS_LINEA) {
+					try {
+						p = mapeoLinea(partes);
+						lista.add(p);
+					} catch (PersonaException e) {
+						System.out.println("Los datos son incorrectos o estan incompletos");
+					}
 				}
 			}
 
@@ -155,17 +154,13 @@ public class EscribirPersonasXML {
 				e.printStackTrace();
 			}
 		}
+		return lista;
 	}
 
 	private static Persona mapeoLinea(String[] campos) throws NumberFormatException, PersonaException {
 
-		Persona p = new Persona(campos[CAMPOS_NOMBRE], 
-								campos[CAMPOS_APE1], 
-								campos[CAMPOS_APE2],
-								Integer.parseInt(campos[CAMPOS_EDAD]), 
-								campos[CAMPOS_MAIL], 
-								campos[CAMPOS_DNI], 
-								campos[CAMPOS_ROL]);
+		Persona p = new Persona(campos[CAMPOS_NOMBRE], campos[CAMPOS_APE1], campos[CAMPOS_APE2],
+				Integer.parseInt(campos[CAMPOS_EDAD]), campos[CAMPOS_MAIL], campos[CAMPOS_DNI], campos[CAMPOS_ROL]);
 		return p;
 	}
 
