@@ -12,6 +12,7 @@ import com.ipartek.formacion.javalibro.pojo.Persona;
 
 public class DivisionFicheros {
 
+	// Variables con la posicion de los ficheros
 	static final String PATH_FICHERO_PERSONAS = "data\\personas.txt";
 	static final String PATH_FICHERO_PERSONAS_OK = "data\\personasOK.txt";
 	static final String PATH_FICHERO_PERSONAS_ERROR = "data\\personasError.txt";
@@ -27,11 +28,13 @@ public class DivisionFicheros {
 
 	public static void main(String[] args) {
 
-		ArrayList<Persona> lista = new ArrayList();
 		FileReader fr = null;
 		BufferedReader br = null;
+		// Variable para el fichero con los datos correctos
 		FileWriter fw = null;
 		BufferedWriter bw = null;
+
+		// Variables para el fichero con los datos incorrectos
 		FileWriter fw2 = null;
 		BufferedWriter bw2 = null;
 
@@ -45,6 +48,7 @@ public class DivisionFicheros {
 			String[] partes;
 			String linea = null;
 			Persona p = null;
+
 			while ((linea = br.readLine()) != null) {
 
 				partes = linea.split(",");
@@ -63,7 +67,7 @@ public class DivisionFicheros {
 					bw2.flush();
 				}
 
-			}
+			} // end while
 
 		} catch (IOException errorDeFichero) {
 			System.out.println("Ha habido problemas: " + errorDeFichero.getMessage());

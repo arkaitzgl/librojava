@@ -48,7 +48,8 @@ import java.util.ArrayList;
 
 public class EscribirPersonasXML {
 
-	static final String PATH_FICHERO_PERSONAS = "data\\person.txt";
+	static final String PATH_FICHERO_PERSONAS = "data\\person.txt";     //Variable con la direccion del fichero a leer
+	
 	static final int NUM_CAMPOS_LINEA = 7;
 	static final int CAMPOS_NOMBRE = 0;
 	static final int CAMPOS_APE1 = 1;
@@ -57,7 +58,6 @@ public class EscribirPersonasXML {
 	static final int CAMPOS_MAIL = 4;
 	static final int CAMPOS_DNI = 5;
 	static final int CAMPOS_ROL = 6;
-	static ArrayList<Persona> lista = new ArrayList<Persona>();
 
 	public static void main(String[] args) {
 
@@ -74,7 +74,7 @@ public class EscribirPersonasXML {
 			doc.appendChild(rootElement);
 
 			lista2= rellenarArrayList();
-			System.out.println(lista2.size());
+		
 
 			for (int i = 0; i < lista2.size(); i++) {
 
@@ -134,7 +134,7 @@ public class EscribirPersonasXML {
 			while ((linea = br.readLine()) != null) {
 
 				partes = linea.split(",");
-				if (partes.length == NUM_CAMPOS_LINEA) {
+				if (partes.length == NUM_CAMPOS_LINEA) {			//Comprobamos que las partes esten compuestas por 7 campos
 					try {
 						p = mapeoLinea(partes);
 						lista.add(p);
