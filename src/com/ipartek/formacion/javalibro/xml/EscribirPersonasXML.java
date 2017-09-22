@@ -57,10 +57,11 @@ public class EscribirPersonasXML {
 	static final int CAMPOS_MAIL = 4;
 	static final int CAMPOS_DNI = 5;
 	static final int CAMPOS_ROL = 6;
+	static ArrayList<Persona> lista = new ArrayList<Persona>();
 
 	public static void main(String[] args) {
 
-		ArrayList<Persona> lista = new ArrayList<Persona>();
+		
 		ArrayList<Persona> lista2 = new ArrayList<Persona>();
 
 		try {
