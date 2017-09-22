@@ -75,6 +75,7 @@ public class EscribirPersonasXML {
 
 			lista2= rellenarArrayList();
 		
+			
 
 			for (int i = 0; i < lista2.size(); i++) {
 
@@ -123,7 +124,7 @@ public class EscribirPersonasXML {
 		ArrayList<Persona> lista = new ArrayList<Persona>();
 		FileReader fr = null;
 		BufferedReader br = null;
-
+		String msg;
 		try {
 
 			fr = new FileReader(PATH_FICHERO_PERSONAS);
@@ -139,7 +140,7 @@ public class EscribirPersonasXML {
 						p = mapeoLinea(partes);
 						lista.add(p);
 					} catch (PersonaException e) {
-						System.out.println("Los datos son incorrectos o estan incompletos");
+						msg=e.getMessage();
 					}
 				}
 			}
@@ -151,7 +152,7 @@ public class EscribirPersonasXML {
 				br.close();
 				fr.close();
 			} catch (IOException e) {
-				System.out.println("No se puede cerrar el Buffer y reader");
+				msg="No se puede cerrar el Buffer y reader";
 				e.printStackTrace();
 			}
 		}
