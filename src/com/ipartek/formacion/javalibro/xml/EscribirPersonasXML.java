@@ -39,6 +39,7 @@ import org.w3c.dom.Element;
 
 import com.ipartek.formacion.javalibro.excepciones.PersonaException;
 import com.ipartek.formacion.javalibro.pojo.Persona;
+import com.ipartek.formacion.javalibro.utilidades.UtilidadesRellenarArray;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -50,15 +51,6 @@ public class EscribirPersonasXML {
 
 	static final String PATH_FICHERO_PERSONAS = "data\\person.txt";     //Variable con la direccion del fichero a leer
 	
-	static final int NUM_CAMPOS_LINEA = 7;
-	static final int CAMPOS_NOMBRE = 0;
-	static final int CAMPOS_APE1 = 1;
-	static final int CAMPOS_APE2 = 2;
-	static final int CAMPOS_EDAD = 3;
-	static final int CAMPOS_MAIL = 4;
-	static final int CAMPOS_DNI = 5;
-	static final int CAMPOS_ROL = 6;
-
 	public static void main(String[] args) {
 
 		
@@ -73,10 +65,8 @@ public class EscribirPersonasXML {
 			Element rootElement = doc.createElement("personas");
 			doc.appendChild(rootElement);
 			
-			
-			lista2= rellenarArrayList();
-		
-			
+			lista2= UtilidadesRellenarArray.rellenarArrayList(PATH_FICHERO_PERSONAS);
+				
 			// inicio bucle para ir rellenando los campos
 			for (int i = 0; i < lista2.size(); i++) {
 
@@ -119,52 +109,6 @@ public class EscribirPersonasXML {
 			e.printStackTrace();
 		}
 
-	}
-
-	private static  ArrayList<Persona> rellenarArrayList() {
-		ArrayList<Persona> lista = new ArrayList<Persona>();
-		FileReader fr = null;
-		BufferedReader br = null;
-		String msg;
-		try {
-
-			fr = new FileReader(PATH_FICHERO_PERSONAS);
-			br = new BufferedReader(fr);
-			String linea = "";
-			Persona p = null;
-			String[] partes;
-			while ((linea = br.readLine()) != null) {
-
-				partes = linea.split(",");
-				if (partes.length == NUM_CAMPOS_LINEA) {			//Comprobamos que las partes esten compuestas por 7 campos
-					try {
-						p = mapeoLinea(partes);
-						lista.add(p);
-					} catch (PersonaException e) {
-						msg=e.getMessage();
-					}
-				}//end if 
-			}// end while
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				br.close();
-				fr.close();
-			} catch (IOException e) {
-				msg="No se puede cerrar el Buffer y reader";
-				e.printStackTrace();
-			}
-		}//end finally
-		return lista;
-	}
-
-	private static Persona mapeoLinea(String[] campos) throws NumberFormatException, PersonaException {
-
-		Persona p = new Persona(campos[CAMPOS_NOMBRE], campos[CAMPOS_APE1], campos[CAMPOS_APE2],
-				Integer.parseInt(campos[CAMPOS_EDAD]), campos[CAMPOS_MAIL], campos[CAMPOS_DNI], campos[CAMPOS_ROL]);
-		return p;
 	}
 
 }

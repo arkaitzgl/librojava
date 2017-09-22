@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import com.ipartek.formacion.javalibro.excepciones.PersonaException;
 import com.ipartek.formacion.javalibro.pojo.Persona;
+import com.ipartek.formacion.javalibro.utilidades.UtilidadesRellenarArray;
 
 public class DivisionFicheros {
 
@@ -48,13 +49,13 @@ public class DivisionFicheros {
 			String[] partes;
 			String linea = null;
 			Persona p = null;
-
+			
 			while ((linea = br.readLine()) != null) {
 
 				partes = linea.split(",");
 				try {
 					if (partes.length == NUM_CAMPOS_LINEA) {
-						p = mapeoLinea(partes);
+						p = UtilidadesRellenarArray.mapeoLinea(partes);
 						bw.write(linea + "\r\n");
 						bw.flush();
 					} else {
@@ -88,10 +89,4 @@ public class DivisionFicheros {
 
 	}
 
-	private static Persona mapeoLinea(String[] campos) throws PersonaException {
-
-		Persona p = new Persona(campos[CAMPOS_NOMBRE], campos[CAMPOS_APE1], campos[CAMPOS_APE2],
-				Integer.parseInt(campos[CAMPOS_EDAD]), campos[CAMPOS_MAIL], campos[CAMPOS_DNI], campos[CAMPOS_ROL]);
-		return p;
-	}
 }
