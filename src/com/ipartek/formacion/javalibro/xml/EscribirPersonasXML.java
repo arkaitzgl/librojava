@@ -72,11 +72,12 @@ public class EscribirPersonasXML {
 			// crear nodo raiz
 			Element rootElement = doc.createElement("personas");
 			doc.appendChild(rootElement);
-
+			
+			
 			lista2= rellenarArrayList();
 		
 			
-
+			// inicio bucle para ir rellenando los campos
 			for (int i = 0; i < lista2.size(); i++) {
 
 				// añadir elementos personas al nodo raiz
@@ -142,8 +143,8 @@ public class EscribirPersonasXML {
 					} catch (PersonaException e) {
 						msg=e.getMessage();
 					}
-				}
-			}
+				}//end if 
+			}// end while
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -155,7 +156,7 @@ public class EscribirPersonasXML {
 				msg="No se puede cerrar el Buffer y reader";
 				e.printStackTrace();
 			}
-		}
+		}//end finally
 		return lista;
 	}
 
